@@ -1,0 +1,32 @@
+spring:
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+  datasource:
+    url: jdbc:postgresql://localhost:5432/myDB
+    username: postgres
+    password: postgres
+  application:
+    name: demo
+  ai:
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: cosine_distance
+        dimensions: 1024
+        initialize-schema: true
+#        schema-validation: true
+    #        batching-strategy: TOKEN_COUNT # Optional: Controls how documents are batched for embedding
+#        max-document-batch-size: 10000 # Optional: Maximum number of documents per batch
+    ollama:
+      chat:
+        options:
+          model: llama3.2
+server:
+  port: 8090
+  tomcat:
+    threads:
+      max: 10
+marketstack:
+  access-key: 731cb3885564e0f5a5cdff09f91f3385
